@@ -5,12 +5,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const port = 8080;
 
+const port = process.env.PORT || 8080;
 const WECHAT_APPID = process.env.WECHAT_APPID;
 const WECHAT_APPSECRET = process.env.WECHAT_APPSECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'default_secret';
+const FAKE_EMAIL_DOMAIN = process.env.FAKE_EMAIL_DOMAIN || 'fake.mail.yourdomain.com';
 
 app.use(session({
     secret: SESSION_SECRET,
@@ -135,7 +136,8 @@ app.get('/userinfo', async (req, res) => {
             sub: userData.openid,
             name: userData.nickname,
             picture: userData.headimgurl,
-            email: `${userData.openid}@fake.mail.subdeer.cn`,
+            email: `${userData.openid}@${FAKE_EMAIL_DOMAIN}`,
+            email_verified: 1,
             locale: userData.language || 'zh_CN',
             gender: userData.sex === 1 ? 'male' : userData.sex === 2 ? 'female' : 'unknown'
             // 其他标准 OAuth2 字段如 email 可根据需求自行扩展
