@@ -1,5 +1,7 @@
 # WeAnswer
 
+> 兔小巢官方的导出功能不支持导出回复，所以我也写了一个[支持回复的导出工具](https://github.com/easychen/txc-exporter)
+
 腾讯兔小巢（txc.qq.com）收费了。一通比较以后，感觉Apache Answer是一个不错的开源替代。但是兔小巢两个很大的特点，一是用户可以直接通过微信登录。
 
 - 好消息：Apache Answer支持 OAuth2 登录
